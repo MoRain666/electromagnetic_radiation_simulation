@@ -1,22 +1,26 @@
 import * as React from 'react';
+import { Container, Tabs, Tab, Typography, makeStyles } from '@material-ui/core';
 
-import { Button, TextInput, ProgressCircle } from 'react-desktop/windows';
+const useStyles = makeStyles((theme) => ({ root: { flexGrow: 1, backgroundColor: theme.palette.background.paper } }));
 
-export class App extends React.Component<undefined, undefined> {
-  render() {
-    return (
-      <div>
-        <h2 className='title'>Welcome to React with Typescript!</h2>
-        <Button type='button'  push onClick={() => console.log('works!')}>
-          press me
-        </Button>
-        <TextInput
-          theme='dark'
-          background
-          color='#cc7f29'
-        />
-        <ProgressCircle size={100} />
-      </div>
-    );
-  }
-}
+export const App = () => {
+
+  const [ value, setValue ] = React.useState(0);
+
+  const handleTabChange = (e: React.ChangeEvent<{}>, value: number) => {
+    setValue( value );
+  };
+
+  const classes = useStyles();
+
+  return (
+    <Container>
+      <Tabs className={classes.root} textColor='primary' indicatorColor='primary' variant='fullWidth' value={value} onChange={handleTabChange}>
+        <Tab className='text' label='1' />
+        <Tab className='text' label='2' />
+        <Tab className='text' label='3' />
+      </Tabs>
+      <Typography>{value}</Typography>
+    </Container>
+  );
+};

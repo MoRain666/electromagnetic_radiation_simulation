@@ -1,0 +1,9 @@
+@import './reset.css';
+
+.title {
+  font-size: 10px;
+}
+
+.text {
+  font-size: 20px !important;
+}
